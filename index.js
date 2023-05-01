@@ -40,7 +40,7 @@ async function retreivePieChartData() {
     console.log("connect");
   });
   connection.query(
-    `select CHANNEL.id,CHANNEL.name,
+    `select CHANNEL.id,CHANNEL.name,CHANNEL.subscribers,
     pie_chart.male,
     pie_chart.female
   FROM channel,
@@ -71,7 +71,7 @@ async function retreiveBarGraphData() {
   });
   connection.query(
     `select monthly_gained_sub.GainedSub,
-    monthly_gained_sub.month,
+    monthly_gained_sub.month,monthly_gained_sub.revenue,monthly_gained_sub.views,
     channel.id
 FROM monthly_gained_sub,
     channel
@@ -117,4 +117,5 @@ WHERE channel.id = videostatistics.channelId`,
     }
   );
   connection.end();
+
 }
